@@ -1,0 +1,20 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace CreateIndustrialSystem.Enum
+{
+    /// <summary>
+    /// 监控数据值的类型
+    /// </summary>
+    public enum MonitorValueState
+    {
+        OK = 0,
+        LoLo = 1,
+        Low = 2,
+        High = 3,
+        HiHi = 4
+    }
+}

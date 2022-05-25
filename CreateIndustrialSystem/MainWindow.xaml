@@ -1,12 +1,196 @@
-﻿<Window x:Class="CreateIndustrialSystem.MainWindow"
-        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:CreateIndustrialSystem"
-        mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+﻿<Window
+    x:Class="CreateIndustrialSystem.MainWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:CreateIndustrialSystem"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    Title="哈哈哈哈"
+    Width="1300"
+    Height="750"
+    AllowsTransparency="True"
+    FontFamily="Microsoft YaHei"
+    FontWeight="ExtraLight"
+    MouseMove="Window_MouseMove"
+    ResizeMode="CanResizeWithGrip"
+    WindowStartupLocation="CenterScreen"
+    WindowStyle="None"
+    mc:Ignorable="d">
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/CreateIndustrialSystem;component/Assets/Styles/ButtonStyles.xaml" />
+
+                <ResourceDictionary>
+                    <Style x:Key="NavTabButtonStyle" TargetType="RadioButton">
+                        <Setter Property="FontSize" Value="15" />
+                        <Setter Property="Foreground" Value="#DDD" />
+                        <Setter Property="Padding" Value="10,5" />
+                        <Setter Property="Margin" Value="5,0" />
+                        <Setter Property="Background" Value="Transparent" />
+                        <Setter Property="Command" Value="{Binding TabChangedCommand}" />
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="RadioButton">
+                                    <Border Background="{TemplateBinding Background}" CornerRadius="5,5,0,0">
+                                        <Grid>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="auto" />
+                                                <ColumnDefinition />
+                                            </Grid.ColumnDefinitions>
+                                            <TextBlock
+                                                Margin="10,0,0,0"
+                                                HorizontalAlignment="Center"
+                                                VerticalAlignment="Center"
+                                                FontFamily="Assets/Fonts/#iconfont"
+                                                FontSize="14"
+                                                Text="{TemplateBinding Tag}" />
+                                            <ContentPresenter
+                                                Grid.Column="1"
+                                                Margin="{TemplateBinding Padding}"
+                                                HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                                VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
+                                        </Grid>
+                                    </Border>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                        <Style.Triggers>
+                            <Trigger Property="IsChecked" Value="True">
+                                <Setter Property="Foreground" Value="White" />
+                                <Setter Property="Background" Value="#FF6800" />
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </ResourceDictionary>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+
+    </Window.Resources>
     <Grid>
-        
+        <Grid.Background>
+            <RadialGradientBrush>
+                <GradientStop Offset="1" Color="#FFABA086" />
+                <GradientStop Offset="0" Color="#FFFD16FF" />
+            </RadialGradientBrush>
+        </Grid.Background>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="100" />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+
+        <Grid>
+            <Border
+                Width="55"
+                Height="50"
+                Margin="10,0,20,0"
+                HorizontalAlignment="Left">
+                <Border.Background>
+                    <ImageBrush ImageSource="Assets/Images/1.jpg" />
+                </Border.Background>
+            </Border>
+            <StackPanel VerticalAlignment="Center">
+                <TextBlock
+                    Margin="85,0,0,0"
+                    FontSize="25"
+                    Foreground="White"
+                    Text="朝夕科技节能管理控制系统" />
+                <Border
+                    Height="45"
+                    Margin="10,0"
+                    Background="Transparent"
+                    BorderBrush="#FF6800"
+                    BorderThickness="0,0,0,1">
+                    <StackPanel
+                        Margin="70,0,0,0"
+                        VerticalAlignment="Bottom"
+                        Orientation="Horizontal">
+                        <RadioButton
+                            CommandParameter="CreateIndustrialSystem.View.SystemMonitor"
+                            Content="系统监控"
+                            IsChecked="True"
+                            Style="{StaticResource NavTabButtonStyle}"
+                            Tag="&#xe601;" />
+                        <RadioButton
+                            Content="实时曲线"
+                            Style="{StaticResource NavTabButtonStyle}"
+                            Tag="&#xe604;" />
+                        <RadioButton
+                            Content="历史曲线"
+                            Style="{StaticResource NavTabButtonStyle}"
+                            Tag="&#xe75c;" />
+                        <RadioButton
+                            Content="控制策略"
+                            Style="{StaticResource NavTabButtonStyle}"
+                            Tag="&#xe684;" />
+                        <RadioButton
+                            Content="系统操作"
+                            Style="{StaticResource NavTabButtonStyle}"
+                            Tag="&#xe600;" />
+                        <RadioButton
+                            Content="报警管理"
+                            Style="{StaticResource NavTabButtonStyle}"
+                            Tag="&#xe62e;" />
+                        <RadioButton
+                            CommandParameter="CreateIndustrialSystem.View.ReportManagementView"
+                            Content="报表管理"
+                            Style="{StaticResource NavTabButtonStyle}"
+                            Tag="&#xe602;" />
+                    </StackPanel>
+                </Border>
+            </StackPanel>
+
+            <!--  窗口控制按钮  -->
+            <StackPanel
+                HorizontalAlignment="Right"
+                VerticalAlignment="Top"
+                Orientation="Horizontal">
+                <Button
+                    Content="&#xe6bf;"
+                    FontSize="14"
+                    Style="{StaticResource IconButtonStyle}" />
+                <Button
+                    Content="&#xe63e;"
+                    FontSize="10"
+                    Style="{StaticResource IconButtonStyle}" />
+                <Button
+                    Click="Button_Click"
+                    Content="&#xe625;"
+                    Style="{StaticResource IconButtonStyle}" />
+            </StackPanel>
+
+            <StackPanel
+                Margin="20,15"
+                HorizontalAlignment="Right"
+                VerticalAlignment="Bottom"
+                Orientation="Horizontal">
+                <TextBlock
+                    Margin="10,0"
+                    VerticalAlignment="Center"
+                    Foreground="White"
+                    Text="TQtong" />
+                <Border
+                    Width="30"
+                    Height="30"
+                    BorderBrush="White"
+                    BorderThickness="1"
+                    CornerRadius="15">
+                    <Border.Effect>
+                        <DropShadowEffect
+                            BlurRadius="5"
+                            Direction="0"
+                            Opacity="0.4"
+                            ShadowDepth="0"
+                            Color="White" />
+                    </Border.Effect>
+                    <Border.Background>
+                        <ImageBrush ImageSource="Assets/Images/1.jpg" />
+                    </Border.Background>
+                </Border>
+            </StackPanel>
+        </Grid>
+
+        <ContentControl Grid.Row="1" Content="{Binding MainContent}" />
     </Grid>
 </Window>
